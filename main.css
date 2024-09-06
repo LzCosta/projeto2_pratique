@@ -13,6 +13,7 @@ body {
 header {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 header img {
@@ -40,19 +41,18 @@ form {
 }
 
 form input {
-    font-size: 24px;
+    font-size: 18px;
     background-color: #fff;
-    border: none;
-    border-bottom: 2px solid #000;
+    border: 2px solid #000;
     padding: 8px;
 }
 
 form button {
     background-color: #009432;
+    border: 2px solid #017327;
     color: #fff;
     font-size: 24px;
     font-weight: bold;
-    border: none;
     cursor: pointer;
     padding: 8px;
 }

@@ -1,68 +1,37 @@
-const form = document.getElementById("form-atividade");
-const imgAprovado = '<img src="./images/aprovado.png" alt="Emoji celebrando">';
-const imgReprovado =
-  '<img src="./images/reprovado.png" alt="Emoji decepcionado">';
-const atividades = [];
-const notas = [];
-const spanAprovado = '<span class="resultado aprovado">Aprovado</span>';
-const spanReprovado = '<span class="resultado reprovado">Reprovado</span>';
-const notaMinima = parseFloat(prompt("Digite a nota mínima:"));
+const frm = document.querySelector("form");
+const contato = document.getElementById("nome");
+const phone = document.getElementById("telefone");
+const contatos = [];
+const telefones = [];
 
 let linhas = "";
 
-form.addEventListener("submit", function (e) {
+frm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   adicionaLinha();
-  atualizaTabela();
-  atualizaMediaFinal();
+  atualizaLista();
 });
 
 function adicionaLinha() {
-  const inputNomeAtividade = document.getElementById("nome-atividade");
-  const inputNotaAtividade = document.getElementById("nota-atividade");
-
-  if (atividades.includes(inputNomeAtividade.value)) {
-    alert(`A atividade: ${inputNomeAtividade.value} já foi inserida`);
+  if (contatos.includes(contato.value) || telefones.includes(phone.value)) {
+    alert(`O nome ou o número já está cadastrado`);
   } else {
-    atividades.push(inputNomeAtividade.value);
-    notas.push(parseFloat(inputNotaAtividade.value));
+    contatos.push(contato.value);
+    telefones.push(phone.value);
 
-    let linha = "<tr>";
-    linha += `<td>${inputNomeAtividade.value}</td>`;
-    linha += `<td>${inputNotaAtividade.value}</td>`;
-    linha += `<td>${
-      inputNotaAtividade.value >= notaMinima ? imgAprovado : imgReprovado
-    }</td>`;
+    let linha = `<tr>`;
+    linha += `<td>${contato.value}</td>`;
+    linha += `<td>${phone.value}</td>`;
     linha += `</tr>`;
 
     linhas += linha;
   }
-
-  inputNomeAtividade.value = "";
-  inputNotaAtividade.value = "";
+  contato.value = "";
+  phone.value = "";
 }
 
-function atualizaTabela() {
-  const corpoTabela = document.querySelector("tbody");
-  corpoTabela.innerHTML = linhas;
-}
-
-function atualizaMediaFinal() {
-  const mediaFinal = calculaMediaFinal();
-
-  document.getElementById("media-final-valor").innerHTML =
-    mediaFinal.toFixed(2);
-  document.getElementById("media-final-resultado").innerHTML =
-    mediaFinal >= notaMinima ? spanAprovado : spanReprovado;
-}
-
-function calculaMediaFinal() {
-  let somaDasNotas = 0;
-
-  for (let i = 0; i < notas.length; i++) {
-    somaDasNotas += notas[i];
-  }
-
-  return somaDasNotas / notas.length;
+function atualizaLista() {
+  const tabelaContatos = document.querySelector("tbody");
+  tabelaContatos.innerHTML = linhas;
 }
