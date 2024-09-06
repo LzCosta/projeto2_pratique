@@ -15,7 +15,7 @@ frm.addEventListener("submit", function (e) {
 
 function adicionaLinha() {
   if (contatos.includes(contato.value) || telefones.includes(phone.value)) {
-    alert(`O nome ou o número já está cadastrado`);
+    alert(`O nome e o número já estão cadastrados`);
   } else {
     contatos.push(contato.value);
     telefones.push(phone.value);
